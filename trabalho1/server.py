@@ -1,4 +1,5 @@
 import rpyc
+from functools import reduce
 class MyService(rpyc.Service):
     def on_connect(self, conn):
         # código que é executado quando uma conexão é iniciada, caso seja necessário
@@ -8,6 +9,8 @@ class MyService(rpyc.Service):
         pass
     def exposed_get_answer(self): # este é um método exposto
         return 42
+    def exposed_sum_array(self, array): # já implementei a função de soma de um array rs
+        return reduce(lambda x, y: x+y, array)
     exposed_the_real_answer_though = 43     # este é um atributo exposto
     def get_question(self):  # este método não é exposto
         return "Qual é  a cor do cavalo branco de Napoleão?"
