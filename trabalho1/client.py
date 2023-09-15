@@ -26,7 +26,8 @@ if __name__ == "__main__":
    server = sys.argv[1]
    
    connection = rpyc.connect(server,18861)
-   # call_exposed_function_and_variable(connection)
-   try_unexposed_function(connection)
-   # call_arraysum_function(connection, 10000)
+   call_exposed_function_and_variable(connection)
+   # try_unexposed_function(connection)
+   length = int(input("Escolha o tamanho do array a ser somado: "))
+   call_arraysum_function(connection, length)
    
