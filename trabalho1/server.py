@@ -10,7 +10,7 @@ class MyService(rpyc.Service):
         pass
     def exposed_get_answer(self): # este é um método exposto
         return 42
-    def exposed_sum_array(self, array): # já implementei a função de soma de um array rs
+    def exposed_sum_array(self, array): # já implementei a função de soma de um array
         start = time()
         result = reduce(lambda x, y: x+y, array)
         end = time()
