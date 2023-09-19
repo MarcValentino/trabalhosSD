@@ -1,6 +1,8 @@
 import rpyc
 from functools import reduce
 from time import time
+import json
+
 class MyService(rpyc.Service):
     def on_connect(self, conn):
         # código que é executado quando uma conexão é iniciada, caso seja necessário
@@ -10,9 +12,10 @@ class MyService(rpyc.Service):
         pass
     def exposed_get_answer(self): # este é um método exposto
         return 42
-    def exposed_sum_array(self, array): # já implementei a função de soma de um array
+    def exposed_sum_array(self, encoded_array):
+        decoded_array = json.loads(encoded_array)
         start = time()
-        result = reduce(lambda x, y: x+y, array)
+        result = reduce(lambda x, y: x+y, decoded_array)
         end = time()
         print("Tempo de execução no servidor: {}s".format(end-start))
         return result

@@ -1,5 +1,6 @@
 import rpyc
 import sys
+import json
 from time import time
 
 def create_array(length):
@@ -15,7 +16,7 @@ def try_unexposed_function(connection):
 def call_arraysum_function(connection, length):
    start = time()
    array = create_array(length)
-   print(connection.root.sum_array(array))
+   print(connection.root.sum_array(json.dumps(array)))
    end = time()
    print("Tempo de execução no cliente: {}s".format(end-start))
 
